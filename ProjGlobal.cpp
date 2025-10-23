@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    auto number = parse_decimal(argv[1]);
+    auto number = common::parse_decimal(argv[1]);
     if (number.has_value()) {
         std::println("Received parameter : {:.2f}", number.value());
     }

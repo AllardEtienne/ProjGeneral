@@ -4,4 +4,8 @@
 #include <stdexcept>
 #include <expected>
 
+namespace common {
+
 std::expected<double, std::string> parse_decimal(const std::string& input);
+
+} // namespace common
