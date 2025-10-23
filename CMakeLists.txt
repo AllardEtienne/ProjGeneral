@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : projet CMake pour ProjGlobal, incluez la source et définissez
 # la logique spécifique au projet ici.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.29)
 
 # Activez Rechargement à chaud pour les compilateurs MSVC si cela est pris en charge.
 if (POLICY CMP0141)
@@ -9,13 +9,20 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("ProjGlobal")
+project (Projet  LANGUAGES CXX C)
+set(CMAKE_CXX_STANDARD 23)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release) 
+
+add_library(ParceDecimal SHARED "ParceDecimal/ParceDecimal.cpp")
+target_include_directories(ParceDecimal
+	PUBLIC "ParceDecimal"
+)
 
 # Ajoutez une source à l'exécutable de ce projet.
-add_executable (ProjGlobal "ProjGlobal.cpp" "ProjGlobal.h" "ParceDecimal.cpp" "ParceDecimal.h")
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET ProjGlobal PROPERTY CXX_STANDARD 23)
-endif()
+add_executable (ProjGlobal "ProjGlobal.cpp")
+target_link_libraries(ProjGlobal PUBLIC ParceDecimal)
 
 # TODO: Ajoutez des tests et installez des cibles si nécessaire.

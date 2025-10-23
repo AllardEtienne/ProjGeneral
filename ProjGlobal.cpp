@@ -2,7 +2,7 @@
 //
 
 #include "ProjGlobal.h"
-#include "ParceDecimal.h"
+#include "ParceDecimal/ParceDecimal.h"
 
 
 // Main function demonstrating the use of parse_decimal
@@ -22,3 +22,4 @@ int main(int argc, char* argv[]) {
     }
     return 0;
 }
+

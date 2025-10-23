@@ -6,6 +6,6 @@
 
 namespace common {
 
-std::expected<double, std::string> parse_decimal(const std::string& input);
+	__declspec(dllexport) std::expected<double, std::string> parse_decimal(const std::string& input);
 
 } // namespace common
